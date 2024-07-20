@@ -1,0 +1,65 @@
+// 3 for loop calculate subarray and sum of each and check          O(n^3)
+// 2 for loop calculate sum simultaneously                          O(n^2)
+
+class Solution {
+public:
+    int subarraySum(vector<int>& arr, int k) {
+        int n = arr.size();
+        int count = 0;
+        int sum = 0;
+    //     map<int, int> map;
+
+    //     map[0] = 1;
+    //     for(int i=0; i<n; i++) {
+    //         sum += nums[i];
+           
+    //         if(map.find(sum-k) != map.end()) count += map[sum-k];
+    //         map[sum]++;
+    //     }
+
+    //     return count;
+
+        // int i = 0;
+        // int j = 0;
+
+        // while(i < n) {
+
+        //     if(sum == k) {
+        //         count++;
+        //         j++;
+        //     }
+        //     else if(sum > k) {
+        //         sum -= arr[i];
+        //         i++;
+        //     }
+        //     else if(sum < k) {
+        //         sum += arr[j];
+        //         j++;
+        //     }
+
+        //     if(j == n && sum < k) return count;  
+            
+        // }
+
+        // return count;
+
+
+
+
+
+        int preSum = 0;
+        unordered_map<int, int> mp;     // {preSum, frequency}
+        mp[0] = 1;
+        
+        for(int i=0; i<n; i++) {
+            preSum += arr[i];
+
+            if(mp.find(preSum - k) != mp.end()) count += mp[preSum -k];
+            mp[preSum]++;
+        }
+
+
+        return count;
+
+    }
+};
